@@ -24,10 +24,12 @@ Article.prototype.toHtml = function() {
   3. article title
   4. article body
   5. publication*/
+  $newArticle.find('h1').text(this.title);
   $newArticle.find('time[pubdate]').attr('title', this.publishedOn);
   $newArticle.find('time').text('about ' + parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago');
 /* TODO: This cloned article is no longer a template, as it now
 has real data attached to it. Remove the class from this new article! */
+  $newArticle.removeClass('template');
   return $newArticle;
 };
 
