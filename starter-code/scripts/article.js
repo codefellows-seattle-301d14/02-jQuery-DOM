@@ -7,6 +7,7 @@ function Article (options) {
    a placeholder for the object that will ultimately be
    passed in. Use all of the properties in blogArticles
    to populate the new Article data that we'll use.  */
+  // DONE
   this.title = options.title;
   this.category = options.category;
   this.author = options.author;
@@ -24,14 +25,16 @@ Article.prototype.toHtml = function() {
   3. article title
   4. article body
   5. publication*/
+  // DONE
   $newArticle.find('h1').text(this.title);
   $newArticle.find('a').text(this.author);
   $newArticle.find('a').attr('href', this.authorUrl);
   $newArticle.find('.article-body').html(this.body);
-  $newArticle.find('time[pubdate]').attr('title', this.publishedOn);
+  $newArticle.find('time[pubdate]').attr('datetime', this.publishedOn);
   $newArticle.find('time').text('about ' + parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago');
-/* TODO: This cloned article is no longer a template, as it now
-has real data attached to it. Remove the class from this new article! */
+  /* TODO: This cloned article is no longer a template, as it now
+  has real data attached to it. Remove the class from this new article! */
+  // DONE
   $newArticle.removeClass('template');
   return $newArticle;
 };
