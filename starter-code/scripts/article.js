@@ -8,6 +8,11 @@ function Article (options) {
    passed in. Use all of the properties in blogArticles
    to populate the new Article data that we'll use.  */
    this.title = options.title;
+   this.category = option.category;
+   this.author = option.author;
+   this.authorUrl = option.authorUrl;
+   this.publishedOn = option.publishedOn;
+   this.body = option.body;
 };
 
 Article.prototype.toHtml = function() {
