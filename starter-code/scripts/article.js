@@ -7,12 +7,25 @@ function Article (options) {
    a placeholder for the object that will ultimately be
    passed in. Use all of the properties in blogArticles
    to populate the new Article data that we'll use.  */
+  this.title = options.title;
+  this.category = options.category;
+  this.author = options.author;
+  this.authorUrl = options.authorUrl;
+  this.publishedOn = options.publishedOn;
+  this.body = options.body;
 };
 
 Article.prototype.toHtml = function() {
+  var $newArticle = $('article.template').clone();
+  $newArticle.attr('data-category', this.category);
+  $newArticle.find('h1').text(this.title);
+  $newArticle.find('a').text(this.author);
+  $newArticle.find('a').attr('href', this.authorUrl);
 
+  $newAritcle.find('section').text(this.body);
   $newArticle.find('time[pubdate]').attr('title', this.publishedOn);
   $newArticle.find('time').text('about ' + parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago');
+  $newArticle.removeClass('template');
 
   return $newArticle;
 };
@@ -29,4 +42,8 @@ blogArticles.sort(function(currentObject, nextObject) {
 
 blogArticles.forEach(function(ele) {
   articles.push(new Article(ele));
+});
+
+articles.forEach(function(article) {
+  $('#articles').append(article.toHtml());
 });
