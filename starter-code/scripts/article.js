@@ -20,7 +20,7 @@ Article.prototype.toHtml = function() {
 
   $newArticle.find('h1').html(this.title);
   $newArticle.find('a').html(this.author);
-  $newArticle.attr('data-category',this.authorUrl);
+  $newArticle.find('a').attr('href', this.authorUrl);
   $newArticle.attr('data-category',this.publishedOn);
   $newArticle.attr('data-category',this.body);
   /* TODO: We also need to fill in:
