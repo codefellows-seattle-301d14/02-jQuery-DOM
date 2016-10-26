@@ -19,11 +19,12 @@ function Article (options) {
 Article.prototype.toHtml = function() {
   var $newArticle = $('article.template').clone();
   $newArticle.attr('data-category', this.category);
-  $newArticle.attr('data-category', this.author);
-  $newArticle.attr('data-category', this.authorUrl);
-  $newArticle.attr('data-category', this.title);
-  $newArticle.attr('data-category', this.body);
-  $newArticle.attr('data-category', this.publishedOn);
+  $newArticle.find('a').text(this.author);
+  $newArticle.find('a').attr('href', this.authorUrl);
+  $newArticle.find('h1').text(this.title);
+  $newArticle.find('section').append(this.body);
+  $newArticle.find('time').text(this.publishedOn);
+  // $newArticle.attr('datetime', this.publishedOn);
 
   /* TODO: We also need to fill in:
   DONE
@@ -36,6 +37,7 @@ Article.prototype.toHtml = function() {
   $newArticle.find('time').text('about ' + parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000) + ' days ago');
 /* TODO: This cloned article is no longer a template, as it now
 has real data attached to it. Remove the class from this new article! */
+  $newArticle.removeAttr('class');
   return $newArticle;
 };
 
