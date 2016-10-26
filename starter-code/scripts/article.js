@@ -19,12 +19,12 @@ function Article (options) {
 Article.prototype.toHtml = function() {
   var $newArticle = $('article.template').clone();
 
-  // $newArticle.removeClass('template');
-  // $newArticle.find('h1').text(this.title);
-  // $newArticle.find('data-category').text(this.category);
-  // $newArticle.find('a').text(this.author);
-  // $newArticle.find('time').text(this.publishedOn);
-  // $newArticle.find('a').attr('href', this.authorUrl);
+  $newArticle.removeClass('template');
+  $newArticle.find('h1').text(this.title);
+  $newArticle.find('data-category').text(this.category);
+  $newArticle.find('a').text(this.author);
+  $newArticle.find('time').text(this.publishedOn);
+  $newArticle.find('a').attr('href', this.authorUrl);
   /* TODO: We also need to fill in:
   1. author name
   2. author url
