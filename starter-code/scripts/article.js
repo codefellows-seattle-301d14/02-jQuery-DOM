@@ -19,11 +19,10 @@ function Article(options) {
 Article.prototype.toHtml = function() {
   var $newArticle = $('article.template').clone();
   $newArticle.attr('data-category', this.category);
-  $newArticle.attr('data-title', this.title);
-  $newArticle.attr('data-author', this.author);
-  $newArticle.attr('data-authorUrl', this.authorUrl);
-  $newArticle.attr('data-publishedOn', this.publishedOn);
-  $newArticle.attr('data-body', this.body);
+  $newArticle.find('h1').text(this.title);
+  $newArticle.find('a').text(this.author).attr('href', this.authorUrl);
+  $newArticle.find('data-publishedOn', this.publishedOn);
+  $newArticle.find('.article-body').append(this.body);
   /* TODO: We also need to fill in:
   1. author name
   2. author url
@@ -32,7 +31,7 @@ Article.prototype.toHtml = function() {
   5. publication*/
   $newArticle.find('time[pubdate]').attr('title', this.publishedOn);
   $newArticle.find('time').text('about ' + parseInt((new Date() - new Date(this.publishedOn)) / 60 / 60 / 24 / 1000) + ' days ago');
-  $newArticle.removeClass('.template');
+  $newArticle.removeClass('template');
     /* TODO: done!
     This cloned article is no longer a template, as it now
     has real data attached to it. Remove the class from this new article! */
